@@ -1,0 +1,3 @@
+rootProject.name = 'airMine'
+
+include ':app'
