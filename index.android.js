@@ -7,47 +7,35 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
-  StyleSheet,
-  Text,
-  View
+ 
 } from 'react-native';
+//import TestComp from './assets/components/test'
+import Inicio from './src/components/app'
 
 export default class airMine extends Component {
+  constructor(props) {
+    super(props);
+    
+    this.state = {};
+    var options = {enableHighAccuracy: true, timeout: 10000, maximumAge: 3000}
+      navigator.geolocation.getCurrentPosition(function(pos){
+         // debugger;
+          //guardar en localStorage
+          this.setState(pos);
+          /**Mode init */
+      }.bind(this), function(error){
+          debugger;
+          //Actualizar localstorage
+      });
+  }
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
+      <Inicio s={this.state}/>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
 
 AppRegistry.registerComponent('airMine', () => airMine);
+
+
