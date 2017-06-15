@@ -35,11 +35,13 @@ export default class Inicio extends Component {
         var lista = []
         for (var key in dataWeb) {
             lista.push(
-                <Text key={"$key" + key + "list"}>{key + ": " + dataWeb[key].v}</Text>
+                <Text key={"$key" + key + "lista"}>{key + ": " + dataWeb[key].v}</Text>
             )
         }
         return lista;
     }
+
+
     render() {
         if (this.state.isLoading) {
             return (
