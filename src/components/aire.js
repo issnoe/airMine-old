@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, Button } from 'react-native';
 import { stylesHome } from '../styles/home.js'
+import PlaceTime  from './placeTime.js'
+import Rank  from './rank.js'
 export default class AireScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -22,27 +24,8 @@ export default class AireScreen extends React.Component {
         justifyContent: 'center',
         alignItems: 'center',
       },
-      pp: {
-        fontFamily: 'Cochin',
-        fontSize: 30,
-        color: 'white',
-        fontWeight: 'bold',
-      },
-      titleText: {
-        fontFamily: 'Cochin',
-        fontSize: 80,
-        paddingRight: 10,
-        paddingLeft: 10,
-        paddingTop: 9,
-        paddingBottom: 9,
-
-        fontWeight: 'bold',
-        backgroundColor: 'rgba(52, 52, 52, 0.8)',
-        borderWidth: 0,
-        borderRadius: 22,
-        color: 'white',
-        marginTop: 30,
-      },
+     
+     
       conteinerButtons: {
         flex: 2,
         flexDirection: 'column',
@@ -54,13 +37,13 @@ export default class AireScreen extends React.Component {
       <Image
         source={require('../img/logindos.png')}
         style={styles.container}>
-        <Text style={styles.pp}>
-          AQI
-        </Text>
-        <Text style={styles.titleText} >
-          21
-        </Text>
-        <View tyle={styles.conteinerButtons}>
+        <PlaceTime/>
+        <Rank/>
+
+
+
+        
+        <View style={styles.conteinerButtons}>
           <Image style={{
             alignSelf: 'center',
             height: 50,
@@ -92,15 +75,3 @@ export default class AireScreen extends React.Component {
     );
   }
 }
-/**
- * <View style={styDivider.container}>
-        <View style={[styDivider.quarterHeight, { backgroundColor: '#CCC' }]} />
-        <View style={styDivider.halfHeight}>
-          <Image style={styDivider.btnHomeAire} source={require('../img/ecology.png')} /></View>
-        <View style={styDivider.quarterHeight}>
-          <Text style={styDivider.texto}>S</Text>
-          <Image style={styDivider.conteinerHomeAire} source={require('../img/nubesf.png')} />
-        </View>
-        <View style={[styDivider.quarterHeight, { backgroundColor: '#ffff' }]} />
-      </View>
- */
