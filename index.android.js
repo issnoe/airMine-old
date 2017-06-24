@@ -8,7 +8,9 @@ import React, { Component } from 'react';
 
 import {AppRegistry, ActivityIndicator, ListView, Text,StyleSheet, View,Button, Image,TouchableOpacity} from 'react-native';
 //import TestComp from './assets/components/test'
-import Inicio from './src/components/app'
+import Inicio from './src/components/app.js'
+import AireScreen from './src/components/aire.js'
+import RankingScreen from './src/components/ranking.js'
 import { StackNavigator } from 'react-navigation';
 
 class ChatScreen extends React.Component {
@@ -18,10 +20,7 @@ class ChatScreen extends React.Component {
     this.state = {};
     var options = {enableHighAccuracy: true, timeout: 10000, maximumAge: 3000}
       navigator.geolocation.getCurrentPosition(function(pos){
-         // debugger;
-          //guardar en localStorage
           this.setState(pos);
-          /**Mode init */
       }.bind(this), function(error){
           debugger;
           //Actualizar localstorage
@@ -36,6 +35,7 @@ class ChatScreen extends React.Component {
     const { params } = this.props.navigation.state;
     return (
       <Inicio s={this.state}/>
+    
     );
   }
 }
@@ -94,7 +94,7 @@ class HomeScreen extends React.Component {
         </View>
         </TouchableOpacity>
         <Text style={{alignSelf: 'center'}}>Radiación Ultravioleta</Text>
-      <TouchableOpacity onPress={() => navigate('Chat', { user: 'Lucy' })} >
+      <TouchableOpacity onPress={() => navigate('Ranking', { user: 'Lucy' })} >
         <View style={{ marginBottom:30,justifyContent: 'center'}} >
           
           <Image   style={{
@@ -107,7 +107,7 @@ class HomeScreen extends React.Component {
         </View>
         </TouchableOpacity>
            <Text style={{alignSelf: 'center'}}>Analisis</Text>
-      <TouchableOpacity onPress={() => navigate('Chat', { user: 'Lucy' })} >
+      <TouchableOpacity onPress={() => navigate('Aire', { user: 'Lucy' })} >
         <View style={{ marginBottom:30,justifyContent: 'center'}} >
           
           <Image   style={{
@@ -131,6 +131,8 @@ class HomeScreen extends React.Component {
 const airMine = StackNavigator({
   Home: { screen: HomeScreen },
   Chat: { screen: ChatScreen },
+  Aire: { screen: AireScreen},
+  Ranking: { screen: RankingScreen},
 });
 
 
