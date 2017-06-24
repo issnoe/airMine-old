@@ -27,7 +27,7 @@ export default class RankingScreen extends React.Component {
 });
     return (
       <Image
-        source={require('../img/nubesf.png')}
+        source={require('../img/logindos.png')}
         style={styles.container}>
         <Text style={styles.welcome}>
           Welcome to React Native!
