@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image,Button } from 'react-native';
+import { View, Text, StyleSheet, Image, Button } from 'react-native';
 import { stylesHome } from '../styles/home.js'
 export default class RankingScreen extends React.Component {
   constructor(props) {
@@ -16,15 +16,15 @@ export default class RankingScreen extends React.Component {
 
     const { params } = this.props.navigation.state;
     const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: undefined,
-    height: undefined,
-    backgroundColor:'transparent',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
+      container: {
+        flex: 1,
+        width: undefined,
+        height: undefined,
+        backgroundColor: 'transparent',
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+    });
     return (
       <Image
         source={require('../img/logindos.png')}
@@ -33,13 +33,13 @@ export default class RankingScreen extends React.Component {
           Welcome to React Native!
         </Text>
         <Image style={{
-        alignSelf: 'center',
-        height: 90,
-        width: 90,
-        marginTop: 35,
-        borderWidth: 1,
-        borderRadius: 75
-    }} source={require('../img/ecology.png')} />
+          alignSelf: 'center',
+          height: 90,
+          width: 90,
+          marginTop: 35,
+          borderWidth: 1,
+          borderRadius: 75
+        }} source={require('../img/ecology.png')} />
         <Text style={styles.instructions}>
           To get started, edit index.ios.js
         </Text>

@@ -369,7 +369,7 @@ const styles = StyleSheet.create({
 
 const MyApp = DrawerNavigator({
   Home: {
-    screen: MyHomeScreen,
+    screen: AireScreen,
   },
   Notifications: {
     screen: MyNotificationsScreen,
