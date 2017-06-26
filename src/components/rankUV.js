@@ -37,7 +37,7 @@ export default class Rank extends React.Component {
                 // backgroundColor: 'rgba(52, 52, 52, 0.8)',
                 borderWidth: 0,
                 borderRadius: 22,
-                color: 'white',
+                color: 'black',
                 marginTop: 15,
                 marginBottom: 20
             }
@@ -52,7 +52,7 @@ export default class Rank extends React.Component {
         return (
             <View style={styles.container}>
                 <Text style={styles.rankLabel}>
-                    AQI
+                    UV
         </Text>
                 <Text style={styles.rankLevel} >
                     21

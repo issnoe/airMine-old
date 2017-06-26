@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, Button } from 'react-native';
 import PlaceTime from './placeTime.js'
-import Rank from './rank.js'
-import ButtonNavigation from './buttonNavigation.js'
-export default class AireScreen extends React.Component {
+import Rank from './rankUV.js'
+import ButtonNavigation from './buttonNavigationUV.js'
+export default class UvScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
     this.props.navigation.navigate('DrawerClose'); 
   }
   static navigationOptions = {
-    drawerLabel: 'Aire Mine',
+    drawerLabel: 'Radiacìon UV',
     drawerWidth: 50,
     drawerPosition: 'right',
 
@@ -36,10 +36,10 @@ export default class AireScreen extends React.Component {
     
     return (
       <Image
-        source={require('../img/logindos.png')}
+        source={require('../img/sunmain.png')}
         style={styles.container}>
         <PlaceTime />
-        <Rank {...this.props} />
+        <Rank {...this.props}/>
         <ButtonNavigation {...this.props}/>
       </Image>
 

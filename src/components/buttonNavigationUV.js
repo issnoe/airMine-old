@@ -6,9 +6,9 @@ export default class ButtonNavigation extends React.Component {
         super(props);
         this.state = {};
     }
-    goUv(e) {
+    goAir(e) {
         e.preventDefault();
-        this.props.navigation.navigate('Uv', { name: 'ssssss' });
+        this.props.navigation.navigate('Home', { name: 'ssssss' });
     }
     render() {
         const styles = StyleSheet.create({
@@ -35,14 +35,14 @@ export default class ButtonNavigation extends React.Component {
                     </View>
                 </View>
                 <View style={styles.divider}>
-                    <TouchableOpacity onPress={this.goUv.bind(this)} >
+                    <TouchableOpacity onPress={this.goAir.bind(this)} >
                     <View >
                         <Image style={{
                             alignSelf: 'center',
                             height: 45,
                             width: 45,
                             borderRadius: 75
-                        }} source={require('../img/sun.png')} />
+                        }} source={require('../img/ecology.png')} />
                     </View>
                      </TouchableOpacity>
                 </View>
