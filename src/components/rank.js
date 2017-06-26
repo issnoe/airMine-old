@@ -10,25 +10,27 @@ export default class Rank extends React.Component {
     render() {
         const styles = StyleSheet.create({
             container: {
-                flex: 1, justifyContent: 'center',
+                flex: 1, 
+               
+                justifyContent: 'center',
                 alignItems: 'center'
             },
             rankLabel: {
-                fontFamily: 'Cochin',
-                fontSize: 30,
+                fontFamily: 'sans-serif-thin',
+                fontSize:21,
                 color: 'white',
                 fontWeight: 'bold',
             },
             rankLevel: {
-                fontFamily: 'Cochin',
+                fontFamily: 'sans-serif-thin',
                 fontSize: 80,
                 paddingRight: 10,
                 paddingLeft: 10,
-                paddingTop: 9,
+                paddingTop: 0,
                 paddingBottom: 9,
 
                 fontWeight: 'bold',
-                backgroundColor: 'rgba(52, 52, 52, 0.8)',
+               // backgroundColor: 'rgba(52, 52, 52, 0.8)',
                 borderWidth: 0,
                 borderRadius: 22,
                 color: 'white',
@@ -37,7 +39,7 @@ export default class Rank extends React.Component {
             }
             ,
             btnDetalles:{
-                
+                 fontFamily: 'sans-serif-thin',
             }
 
 

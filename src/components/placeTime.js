@@ -9,7 +9,7 @@ export default class PlaceTime extends React.Component {
 
     render() {
         const styles = StyleSheet.create({
-            container: { flex: 1, flexDirection: 'row', height: 1, justifyContent: 'center' },
+            container: { flex: .40, flexDirection: 'row',  justifyContent: 'center' },
             divider: { flex: 2, width: 50, height: 80 },
             dividerLeft: {
                 flex: .50, width: 50, height: 80, marginRight: 10,
@@ -26,17 +26,17 @@ export default class PlaceTime extends React.Component {
             },
             date: {
                 paddingLeft: 20,
-                fontFamily: 'roboto',
+                fontFamily: 'sans-serif-thin',
                 fontSize: 15,
                 color: 'black',
 
             },
-            btnLabel: { textAlign: 'right',fontFamily: 'roboto',
-                fontSize: 15,
+            btnLabel: { textAlign: 'right',fontFamily: 'sans-serif-thin',
+                fontSize: 14,
                 marginBottom:17,
                 color: 'black'},
-            timeLabel: { textAlign: 'right',fontFamily: 'roboto',
-                fontSize: 15,
+            timeLabel: { textAlign: 'right',fontFamily: 'sans-serif-thin',
+                fontSize: 14,
                 marginBottom:3,
                 color: 'black'},
 

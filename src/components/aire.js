@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, Button } from 'react-native';
 import { stylesHome } from '../styles/home.js'
-import PlaceTime  from './placeTime.js'
-import Rank  from './rank.js'
+import PlaceTime from './placeTime.js'
+import Rank from './rank.js'
+import ButtonNavigation from './buttonNavigation.js'
 export default class AireScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -24,8 +25,8 @@ export default class AireScreen extends React.Component {
         justifyContent: 'center',
         alignItems: 'center',
       },
-     
-     
+
+
       conteinerButtons: {
         flex: 2,
         flexDirection: 'column',
@@ -37,39 +38,9 @@ export default class AireScreen extends React.Component {
       <Image
         source={require('../img/logindos.png')}
         style={styles.container}>
-        <PlaceTime/>
-        <Rank/>
-
-
-
-        
-        <View style={styles.conteinerButtons}>
-          <Image style={{
-            alignSelf: 'center',
-            height: 50,
-            width: 50,
-
-            marginTop: 35,
-            borderWidth: 1,
-            borderRadius: 75
-          }} source={require('../img/ecology.png')} />
-          <Image style={{
-            alignSelf: 'center',
-            height: 90,
-            width: 90,
-            marginTop: 35,
-            borderWidth: 1,
-            borderRadius: 75
-          }} source={require('../img/ecology.png')} />
-        </View>
-
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
+        <PlaceTime />
+        <Rank />
+        <ButtonNavigation />
       </Image>
 
     );
