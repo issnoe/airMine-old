@@ -12,7 +12,7 @@ import Inicio from './src/components/app.js'
 import AireScreen from './src/components/aire.js'
 import UvScreen from './src/components/uv.js'
 import SummerScreen from './src/components/summer.js'
-import RankingScreen from './src/components/ranking.js'
+import RankingScreen from './src/components/rankingList.js'
 import { StackNavigator ,DrawerNavigator,DrawerItems} from 'react-navigation';
 
 class ChatScreen extends React.Component {
@@ -243,6 +243,9 @@ const MyApp = DrawerNavigator({
   },
   Uv: {
     screen: UvScreen,
+  },
+  Ranking: {
+    screen: RankingScreen,
   },
 });
 

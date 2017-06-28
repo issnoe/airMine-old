@@ -10,7 +10,6 @@ export default class Rank extends React.Component {
         e.preventDefault();
         this.props.navigation.navigate('Summer', { name: 'ssssss' });
     }
-
     render() {
         const styles = StyleSheet.create({
             container: {
@@ -45,8 +44,6 @@ export default class Rank extends React.Component {
             btnDetalles: {
                 fontFamily: 'sans-serif-thin',
             }
-
-
         });
 
         return (

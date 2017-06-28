@@ -10,6 +10,10 @@ export default class ButtonNavigation extends React.Component {
         e.preventDefault();
         this.props.navigation.navigate('Uv', { name: 'ssssss' });
     }
+    goRanking(e){
+         e.preventDefault();
+        this.props.navigation.navigate('Ranking', { name: 'ssssss' });
+    }
     render() {
         const styles = StyleSheet.create({
             container: { flex: .60, flexDirection: 'row', justifyContent: 'center' },
@@ -22,6 +26,7 @@ export default class ButtonNavigation extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={styles.divider}>
+                     <TouchableOpacity onPress={this.goRanking.bind(this)} >
                     <View >
                         <Image style={{
                             alignSelf: 'center',
@@ -33,6 +38,7 @@ export default class ButtonNavigation extends React.Component {
 
                         </Image>
                     </View>
+                     </TouchableOpacity>
                 </View>
                 <View style={styles.divider}>
                     <TouchableOpacity onPress={this.goUv.bind(this)} >

@@ -15,9 +15,7 @@ export default class UvScreen extends React.Component {
     drawerPosition: 'right',
 
   };
- 
   render() {
-     
     const styles = StyleSheet.create({
       container: {
         flex: 1,
