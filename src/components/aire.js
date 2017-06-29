@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, Button } from 'react-native';
+import { View, Text, StyleSheet, Image, Button , AsyncStorage} from 'react-native';
 import PlaceTime from './placeTime.js'
 import Rank from './rank.js'
 import ButtonNavigation from './buttonNavigation.js'
@@ -7,7 +7,25 @@ export default class AireScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.props.navigation.navigate('DrawerClose'); 
+    this.state.user={}
+    this.props.navigation.navigate('DrawerClose');
+    //debugger;
+   /* let UID_object = {
+      name: 'Luis jasso',
+      age: 30,
+      
+    };*/
+    
+    
+
+    //AsyncStorage.setItem('UID', JSON.stringify(UID_object));
+
+    AsyncStorage.getItem('UID', (err, result) => {
+          var userStorage = JSON.parse(result)
+          this.setState({user:userStorage});
+    });
+
+    
   }
   static navigationOptions = {
     drawerLabel: 'Aire Mine',
@@ -16,8 +34,9 @@ export default class AireScreen extends React.Component {
 
   };
  
+
   render() {
-     
+
     const styles = StyleSheet.create({
       container: {
         flex: 1,
@@ -33,14 +52,15 @@ export default class AireScreen extends React.Component {
       }
     });
     const { params } = this.props.navigation.state;
-    
+
     return (
       <Image
         source={require('../img/logindos.png')}
         style={styles.container}>
         <PlaceTime />
+        <Text>{(this.state.user)?this.state.user.name:'no hay usuario'}</Text>
         <Rank {...this.props} />
-        <ButtonNavigation {...this.props}/>
+        <ButtonNavigation {...this.props} />
       </Image>
 
     );
