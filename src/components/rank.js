@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, Button, TouchableOpacity } from 'react-native';
-
 export default class Rank extends React.Component {
     constructor(props) {
         super(props);
@@ -12,6 +11,7 @@ export default class Rank extends React.Component {
     }
 
     render() {
+         var status=null
         const styles = StyleSheet.create({
             container: {
                 flex: 1,
@@ -48,14 +48,19 @@ export default class Rank extends React.Component {
 
 
         });
-
+        var data = this.props
+        
+       
         return (
             <View style={styles.container}>
                 <Text style={styles.rankLabel}>
                     AQI
         </Text>
                 <Text style={styles.rankLevel} >
-                    21
+                  {(data && data.data)?data.data.aqi:"?"}
+        </Text>
+         <Text style={styles.rankLabel}>
+                    {(this.props && this.props.status)?this.props.status.status:"..."}
         </Text>
                 <Button
                     onPress={this.goResumen.bind(this)}

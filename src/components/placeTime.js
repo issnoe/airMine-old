@@ -5,6 +5,7 @@ export default class PlaceTime extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
+        
     }
 
     render() {
@@ -20,7 +21,7 @@ export default class PlaceTime extends React.Component {
             place: {
                 paddingLeft: 20,
                 fontFamily: 'sans-serif-thin',
-                fontSize: 40,
+                fontSize: 35,
                 color: 'white',
 
             },
@@ -41,19 +42,21 @@ export default class PlaceTime extends React.Component {
                 color: 'black'},
 
         });
+        var data = this.props
+        
 
         return (
             <View style={styles.container}>
                 <View style={styles.divider}>
                     <Text style={styles.place}>
-                        Santa Fe
+                        {(data && data.data)?data.data.city.name:"Cargando . . ."} 
                     </Text>
                     <Text style={styles.date}>
-                        Sab 24 de Junio 2018
+                          {(data && data.data)?data.data.time.s:"Cargando . . ."} 
                     </Text>
                 </View>
                 <View style={styles.dividerLeft}>
-                    <TouchableOpacity >
+                    <TouchableOpacity onPress={()=>{this.props.onChange(true)}}>
                         <Image
                             style={styles.updateBtn}
                             source={require('../img/refresh.png')}
@@ -64,13 +67,10 @@ export default class PlaceTime extends React.Component {
                         
                     </TouchableOpacity>
                     <Text style={styles.timeLabel}>
-                        tz -10:00
+                        tz  {(data && data.data)?data.data.time.tz:"Cargando . . ."}
 
                     </Text>
-                    <Text style={styles.timeLabel}>
-                        10:00
-                        
-                    </Text>
+                    
                 </View>
             </View>
         );
