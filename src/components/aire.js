@@ -24,7 +24,6 @@ export default class AireScreen extends React.Component {
   _getDataWS() {
     var options = { enableHighAccuracy: true, timeout: 10000, maximumAge: 3000 }
     navigator.geolocation.getCurrentPosition(function (pos) {
-
       var dataLocation = pos
       this.setState({ location: pos });
       if (dataLocation && dataLocation.coords) {
@@ -32,7 +31,7 @@ export default class AireScreen extends React.Component {
         var urlWithLocation = "https://api.waqi.info/feed/" + stringCoord + "/?token=15bae679176be73a9af8eabd9e9099d4b027828d";
         return fetch(urlWithLocation).then((response) => response.json()).then((responseJson) => {
           var dataWebSer = responseJson.data;
-          this.setState({
+                   this.setState({
             isLoading: false,
             dataWebSer: dataWebSer
           }, function () {
@@ -91,10 +90,8 @@ export default class AireScreen extends React.Component {
     var statusData = {}
     var imagenBack = require('../img/logindos.png')
     if (this.state.dataWebSer) {
-      
       statusData = getStatus(this.state.dataWebSer.aqi)
-      var ss=
-      imagenBack = require('../img/logintres.png')
+      imagenBack = statusData.imagen
     }
     return (
       <Image

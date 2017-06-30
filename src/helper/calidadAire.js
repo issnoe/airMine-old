@@ -12,21 +12,21 @@ export function getStatus(aqi) {
         color = '#009966'
         implicacion = "La calidad del aire se considera satisfactoria y la contaminación atmosférica plantea poco o ningún riesgo"
         advertencias = "Ninguna"
-        imagen = "buena.png"
+        imagen = require('../img/nubesf.png')
     }
     if (aqi > 50 && aqi <= 100) {
         status = 'Moderado'
         color = '#ffde33'
         implicacion = "La calidad del aire es aceptable; Sin embargo, para algunos contaminantes puede haber un problema moderado de salud para un número muy pequeño de personas que son inusualmente sensibles a la contaminación del aire"
         advertencias = "Los niños y adultos activos, y las personas con enfermedades respiratorias, como el asma, deben limitar el esfuerzo al aire libre prolongado."
-        imagen = "moderada.png"
+        imagen = require('../img/logintres.png')
     }
     if (aqi > 100 && aqi <= 150) {
         status = 'Insalubres para grupos sensibles'
         color = '#ff9933'
         implicacion = "Los miembros de grupos sensibles pueden experimentar efectos sobre la salud. No es probable que el público en general se vea afectado."
         advertencias = "Los niños y adultos activos, y las personas con enfermedades respiratorias, como el asma, deben limitar el esfuerzo al aire libre prolongado."
-        imagen = "igs.png"
+        imagen = require('../img/logintres.png')
     }
     if (aqi > 150 && aqi <= 200) {
         status = 'Insalubre'
@@ -40,14 +40,14 @@ export function getStatus(aqi) {
         color = '#660099'
         implicacion = "Advertencias sanitarias de condiciones de emergencia. Es más probable que toda la población se vea afectada."
         advertencias = "Los niños y adultos activos, y las personas con enfermedades respiratorias, como el asma, deben evitar todo esfuerzo al aire libre; Todos los demás, especialmente los niños, deben limitar el esfuerzo al aire libre."
-        imagen = "pocosaludable.png"
+        imagen = require('../img/logintres.png')
     }
     if (aqi > 300) {
         status = 'Peligroso'
         color = '#7e0023'
         implicacion = "Alerta de salud: todos pueden experimentar efectos más graves para la salud"
         advertencias = "Todos deben evitar todo esfuerzo al aire libre"
-        imagen = "peligroso.png"
+        imagen = require('../img/logintres.png')
     }
     return {
         status,

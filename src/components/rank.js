@@ -19,11 +19,29 @@ export default class Rank extends React.Component {
                 justifyContent: 'center',
                 alignItems: 'center'
             },
-            rankLabel: {
+            rankLabelStatus: {
                 fontFamily: 'sans-serif-thin',
-                fontSize: 21,
+                fontSize: 15,
+                padding:3,
+                width:109,
+                textAlign:'center',
                 color: 'white',
                 fontWeight: 'bold',
+                backgroundColor:'rgba(52, 52, 52, 0.8)',
+                 marginBottom: 10,
+            },
+            rankLabel: {
+                fontFamily: 'sans-serif-thin',
+                fontSize: 15,
+                backgroundColor:'white',
+                color: 'black',
+                fontWeight: 'bold',
+                 marginBottom: 0,
+                 width:109,
+                 textAlign:'center',
+                 
+                 padding:1
+              
             },
             rankLevel: {
                 fontFamily: 'sans-serif-thin',
@@ -31,15 +49,15 @@ export default class Rank extends React.Component {
                 paddingRight: 10,
                 paddingLeft: 10,
                 paddingTop: 0,
-                paddingBottom: 9,
+                paddingBottom: 0,
 
                 fontWeight: 'bold',
-                // backgroundColor: 'rgba(52, 52, 52, 0.8)',
+                 backgroundColor: 'rgba(52, 52, 52, 0.8)',
                 borderWidth: 0,
-                borderRadius: 22,
+                borderRadius: 0,
                 color: 'white',
                 marginTop: 15,
-                marginBottom: 20
+                marginBottom: 0
             }
             ,
             btnDetalles: {
@@ -53,19 +71,21 @@ export default class Rank extends React.Component {
        
         return (
             <View style={styles.container}>
-                <Text style={styles.rankLabel}>
-                    AQI
-        </Text>
+               
                 <Text style={styles.rankLevel} >
-                  {(data && data.data)?data.data.aqi:"?"}
+                  {(data && data.data)?data.data.aqi:"...."}
         </Text>
          <Text style={styles.rankLabel}>
+                    AQI
+                    
+        </Text>
+         <Text style={styles.rankLabelStatus}>
                     {(this.props && this.props.status)?this.props.status.status:"..."}
         </Text>
                 <Button
                     onPress={this.goResumen.bind(this)}
                     style={styles.btnDetalles}
-                    title="Ver detalles"
+                    title="Ver"
                 />
 
             </View>
