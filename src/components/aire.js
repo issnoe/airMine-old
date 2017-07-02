@@ -31,6 +31,7 @@ export default class AireScreen extends React.Component {
   };
    updateStorageAir(callback){
     getAireData(function(estatus,resp){
+    resp.estatus=getStatus(resp.aqi);
     AsyncStorage.setItem('AIRE', JSON.stringify(resp));
     callback(resp)
     }.bind(this))
@@ -79,7 +80,7 @@ export default class AireScreen extends React.Component {
     var statusData = {}
     var imagenBack = require('../img/logindos.png')
     if (this.state.dataWebSer) {
-      statusData = getStatus(this.state.dataWebSer.aqi)
+      statusData = this.state.dataWebSer.estatus
       imagenBack = statusData.imagen
     }
     return (

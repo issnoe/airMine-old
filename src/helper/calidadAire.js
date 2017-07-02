@@ -1,5 +1,5 @@
 export function getStatus(aqi) {
-    
+
     var status = ''
     var color = ''
     var imagen = ''
@@ -56,4 +56,110 @@ export function getStatus(aqi) {
         implicacion,
         advertencias,
     }
+}
+
+export function getStatusIAQI(level, sustancia) {
+    var status = ''
+    var color = ""
+    var name = ""
+
+    switch (sustancia) {
+        case 'co':
+            name = "Cobalto - Co"
+            color = "#4db748"
+            status = "Bueno"
+
+
+            break;
+        case 'h':
+            name = "Hidrógeno - H"
+             color = "#4db748"
+                status = "Bueno"
+            break;
+        case 'no2':
+            name = "Dióxido de nitrógeno - NO2"
+             color = "#4db748"
+                status = "Bueno"
+            break;
+        case 'o3':
+            name = "Ozono- O3"
+            if (level > 0 && level < 50) {
+                color = "#4db748"
+                status = "Bueno"
+            }
+            if (level > 50 && level < 100) {
+                color = "#f9a61a"
+                status = "Moderado"
+            }
+            if (level >100) {
+                color = "#ed1b24"
+                status = "Alto"
+            }
+            break;
+        case 'p':
+            name = "Fósforo - P"
+            color = "#4db748"
+            status = "Bueno"
+            break;
+        case 'pm10':
+            name = "PM10"
+             if (level > 0 && level < 40) {
+                color = "#4db748"
+                status = "Bueno"
+            }
+            if (level > 40 && level < 100) {
+                color = "#f9a61a"
+                status = "Moderado"
+            }
+            if (level >100) {
+                color = "#ed1b24"
+                status = "Alto"
+            }
+            break;
+        case 'pm25':
+            name = "PM25"
+            if (level > 0 && level < 40) {
+                color = "#4db748"
+                status = "Bueno"
+            }
+            if (level > 40 && level < 100) {
+                color = "#f9a61a"
+                status = "Moderado"
+            }
+            if (level >100) {
+                color = "#ed1b24"
+                status = "Alto"
+            }
+            break;
+        case 'so2':
+            name = "Dióxido de azufre - SO2"
+            color = "#4db748"
+                status = "Bueno"
+            break;
+
+        case 't':
+            name = "t"
+            color = "#4db748"
+            status = "Bueno"
+            break;
+        case 'w':
+            name = "w"
+            color = "#4db748"
+            status = "Bueno"
+            break;
+        case 'wd':
+            name = "wd"
+            color = "#4db748"
+            status = "Bueno"
+            break;
+
+        default:
+            break;
+    }
+    return {
+        name,
+        status,
+        color
+    }
+
 }
