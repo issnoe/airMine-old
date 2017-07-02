@@ -3,23 +3,34 @@ import { View, Text, StyleSheet, Image, Button, AsyncStorage, TextInput } from '
 import PlaceTime from './placeTime.js'
 import Rank from './rank.js'
 import ButtonNavigation from './buttonNavigation.js'
-export default class UsuarioScreen extends React.Component {
+import {HandleScreenStorage} from "./handleStateStorage"
+import {getAireData} from '../helper/webserviceAir.js'
+
+export default class UsuarioScreen extends React.Component{
   constructor(props) {
     super(props);
     this.state = {};
     this.state.user = {}
     this.props.navigation.navigate('DrawerClose');
-     AsyncStorage.getItem('UID', (err, result) => {
+    AsyncStorage.getItem('UID', (err, result) => {
           var userStorage = JSON.parse(result)
-         
           if(userStorage!=null){
+         
+            this.updateStorageAir(()=>{});
+            //this.props.navigation.navigate('Home');
             this.setState({user:userStorage});
           }
-         
-          //this.props.navigation.navigate('Home');
-          
     });
   }
+   updateStorageAir(callback){
+    getAireData(function(estatus,resp){
+    AsyncStorage.setItem('AIRE', JSON.stringify(resp));
+    callback(resp)
+    }.bind(this))
+  }
+
+  
+
   static navigationOptions = {
     drawerLabel: 'Usuario',
     drawerWidth: 10,

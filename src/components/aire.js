@@ -1,58 +1,53 @@
-import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, Button, AsyncStorage } from 'react-native';
+import React, {Component} from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Button,
+  AsyncStorage
+} from 'react-native';
 import PlaceTime from './placeTime.js'
 import Rank from './rank.js'
 import ButtonNavigation from './buttonNavigation.js'
-import { getStatus } from "../helper/calidadAire.js"
-
+import {getStatus} from "../helper/calidadAire.js"
+import {getAireData} from '../helper/webserviceAir.js'
 export default class AireScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
     this.state.user = {}
     this.state.location = {}
-    this.props.navigation.navigate('DrawerClose');
-    this._getDataWS()
+    this
+      .props
+      .navigation
+      .navigate('DrawerClose');
+      this._getDataWS();
   }
   static navigationOptions = {
-    drawerLabel: 'Aire Mine',
+    drawerLabel: 'Calidad del aire',
     drawerWidth: 50,
-    drawerPosition: 'right',
-
+    drawerPosition: 'right'
   };
+   updateStorageAir(callback){
+    getAireData(function(estatus,resp){
+    AsyncStorage.setItem('AIRE', JSON.stringify(resp));
+    callback(resp)
+    }.bind(this))
+  }
 
   _getDataWS() {
-    var options = { enableHighAccuracy: true, timeout: 10000, maximumAge: 3000 }
-    navigator.geolocation.getCurrentPosition(function (pos) {
-      var dataLocation = pos
-      this.setState({ location: pos });
-      if (dataLocation && dataLocation.coords) {
-        var stringCoord = "geo:" + dataLocation.coords.latitude + ";" + dataLocation.coords.longitude;
-        var urlWithLocation = "https://api.waqi.info/feed/" + stringCoord + "/?token=15bae679176be73a9af8eabd9e9099d4b027828d";
-        return fetch(urlWithLocation).then((response) => response.json()).then((responseJson) => {
-          var dataWebSer = responseJson.data;
-                   this.setState({
-            isLoading: false,
-            dataWebSer: dataWebSer
-          }, function () {
-            // do something with new state
-          });
-        }).catch((error) => {
-          alert("No se encuentran datos");
-        });
-      }
-
-
-
-    }.bind(this), function (error) {
-
-    });
+     this.updateStorageAir(function (data) {
+      this.setState({
+        isLoading: false,
+        dataWebSer: data
+      }, function () {
+      });
+    }.bind(this));
   }
   renderData() {
-
     var dataWeb = this.state.dataWebSer
     if (dataWeb) {
-      debugger
       var lista = []
       for (var key in dataWeb) {
         lista.push(
@@ -61,17 +56,11 @@ export default class AireScreen extends React.Component {
       }
       return lista;
     }
-
-
   }
   updateLocation(e) {
-
     this._getDataWS()
   }
-
-
   render() {
-
     const styles = StyleSheet.create({
       container: {
         flex: 1,
@@ -79,14 +68,14 @@ export default class AireScreen extends React.Component {
         height: undefined,
         backgroundColor: 'transparent',
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
       },
       conteinerButtons: {
         flex: 2,
-        flexDirection: 'column',
+        flexDirection: 'column'
       }
     });
-    const { params } = this.props.navigation.state;
+    const {params} = this.props.navigation.state;
     var statusData = {}
     var imagenBack = require('../img/logindos.png')
     if (this.state.dataWebSer) {
@@ -94,12 +83,14 @@ export default class AireScreen extends React.Component {
       imagenBack = statusData.imagen
     }
     return (
-      <Image
-        source={imagenBack}
-        style={styles.container}>
-        <PlaceTime data={this.state.dataWebSer} onChange={this.updateLocation.bind(this)} />
-        <Rank {...this.props} data={this.state.dataWebSer} status={statusData} />
-        <ButtonNavigation {...this.props} />
+      <Image source={imagenBack} style={styles.container}>
+        <PlaceTime
+          data={this.state.dataWebSer}
+          onChange={this
+          .updateLocation
+          .bind(this)}/>
+        <Rank {...this.props} data={this.state.dataWebSer} status={statusData}/>
+        <ButtonNavigation {...this.props}/>
       </Image>
 
     );
