@@ -18,6 +18,10 @@ export default class CreditosScreen extends React.Component {
                 justifyContent: 'center',
                 alignItems: 'center',
             },
+            instructions:{
+                textAlign:'center',
+                fontSize:12,
+            }
         });
         const {state} = this.props.navigation;
         const {setParams} = this.props.navigation;
@@ -44,14 +48,23 @@ export default class CreditosScreen extends React.Component {
         </Text>
                 
 
-                <Button
+                <Button style={{
+                    marginTop:15,
+                    marginBottom:10
+                }}
                     onPress={() => this.props.navigation.navigate('Home', { name: 'ssssss' })}
                     title="Iniciar"
                 />
-                <Text style={styles.instructions}>
-                    UPEMOR
-                
-        </Text>
+
+                <Image style={{
+                    alignSelf: 'center',
+                    height: 40,
+                    width: 40,
+                    marginTop: 35,
+                    borderWidth: 1,
+               
+                }} source={require('../img/upemor.png')} />
+               
             </Image>
         );
     }

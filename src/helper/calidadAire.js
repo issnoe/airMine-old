@@ -17,7 +17,7 @@ export function getStatus(aqi) {
     if (aqi > 50 && aqi <= 100) {
         status = 'Moderado'
         color = '#ffde33'
-        implicacion = "La calidad del aire es aceptable; Sin embargo, para algunos contaminantes puede haber un problema moderado de salud para un número muy pequeño de personas que son inusualmente sensibles a la contaminación del aire"
+        implicacion = "La calidad del aire es aceptable; Sin embargo, hay algunos contaminantes que puede probocar un  problema moderado en la salud para un número muy pequeño de personas que son inusualmente sensibles a la contaminación del aire"
         advertencias = "Los niños y adultos activos, y las personas con enfermedades respiratorias, como el asma, deben limitar el esfuerzo al aire libre prolongado."
         imagen = require('../img/logintres.png')
     }
@@ -31,7 +31,7 @@ export function getStatus(aqi) {
     if (aqi > 150 && aqi <= 200) {
         status = 'Insalubre'
         color = '#cc0033'
-        implicacion = "odo el mundo puede comenzar a experimentar efectos sobre la salud; Los miembros de grupos sensibles pueden experimentar efectos más graves para la salud"
+        implicacion = "Todo el mundo puede comenzar a experimentar efectos sobre la salud; Los miembros de grupos sensibles pueden experimentar efectos más graves para la salud"
         advertencias = "Los niños y adultos activos y las personas con enfermedades respiratorias, como el asma, deben evitar el ejercicio prolongado al aire libre; Todos los demás, especialmente los niños, deben limitar el esfuerzo al aire libre prolongado"
         imagen = "insalubre.png"
     }

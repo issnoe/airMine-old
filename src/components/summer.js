@@ -16,7 +16,7 @@ export default class SummerScreen extends React.Component {
         });
     }
     static navigationOptions = {
-        drawerLabel: 'Resumen',
+        drawerLabel: 'Resumen calidad del aire',
         drawerWidth: 50,
         drawerPosition: 'right',
 
@@ -239,7 +239,20 @@ export default class SummerScreen extends React.Component {
                 backgroundColor: '#f7f7f7',
                 paddingRight: 50,
                 paddingLeft: 60,
+            },
+            textTitle:{
+               
+                textAlign:'center',
+                fontSize:18,
+                backgroundColor: '#f7f7f7',
+
+            },
+            textbody:{
+                  textAlign:'justify',
+                  backgroundColor: '#f7f7f7',
+                fontSize:13,
             }
+
         });
 
         //grafica
@@ -248,21 +261,21 @@ export default class SummerScreen extends React.Component {
                 "v": 49,
                 "name": "Lunes"
             }, {
-                "v": 42,
+                "v": 52,
                 "name": "Martes"
             }],
             [{
                 "v": 69,
                 "name": "Miercoles"
             }, {
-                "v": 62,
+                "v": 72,
                 "name": "Jueves"
             }],
             [{
-                "v": 29,
+                "v": 46,
                 "name": "Viernes"
             }, {
-                "v": 15,
+                "v": 42,
                 "name": "Sabado"
             }]
         ]
@@ -319,19 +332,23 @@ export default class SummerScreen extends React.Component {
                 <Button
                     onPress={this.goResumen.bind(this)}
                     style={styles.btnlink}
-                    title=" < Ir a AirMine"
+                    title=" <---"
                 />
-                <View style={styles.container}>
+                <View style={styles.main}>
+                    <Text style={styles.textTitle}> Indicaciones</Text>
                     <View style={styles.row}>
-                        <Text>{(this.state.dataStore) ? this.state.dataStore.estatus.implicacion : ""} </Text>
+                        <Text style={styles.textbody}>{(this.state.dataStore) ? this.state.dataStore.estatus.implicacion : ""} </Text>
                     </View>
+                     <Text style={styles.textTitle}>Advertencias</Text>
                     <View style={styles.row}>
-                        <Text>{(this.state.dataStore) ? this.state.dataStore.estatus.advertencias : ""} </Text>
+                        <Text style={styles.textbody}>{(this.state.dataStore) ? this.state.dataStore.estatus.advertencias : ""} </Text>
                     </View>
 
 
                 </View>
+                <Text style={styles.textTitle}> Nivel de sustancias </Text>
                 <View style={styles.container}>
+                    
                     <View style={styles.mainLeft}>
                         <View style={styles.container}>
                             <View style={styles.conteinerLeft}>
@@ -415,9 +432,8 @@ export default class SummerScreen extends React.Component {
                     </View>
                 </View>
                 <View style={styles.containerGrafica}>
-                    <Text>
-                        Puntuación AQI más alta por día
-                     </Text>
+                    <Text style={styles.textTitle}> Puntuación AQI más alta por día </Text>
+                    
 
                     <Bar data={data} options={options} accessorKey='v' />
                 </View>

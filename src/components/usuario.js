@@ -99,7 +99,17 @@ export default class UsuarioScreen extends React.Component{
       ,
       btnInicio: {
 
-      }
+      },
+        welcome:{
+                textAlign:'center',
+                fontSize:12,
+                marginBottom:7
+            },
+      instructions:{
+                textAlign:'center',
+                fontSize:14,
+                marginBottom:7
+            }
     });
     const { params } = this.props.navigation.state;
 
@@ -128,12 +138,15 @@ return (
         source={require('../img/nubesf.png')}
         style={styles.container}>
         <View style={styles.conteinerDividerM}>
-          <View style={styles.conteinerDividerS}>
+          
+             <Text style={styles.welcome}>
+                    Bienvenido a AirMine
+        </Text>
             <Text style={styles.instructions}>
-              La aplicacion que te dice la calidad {'\n'} del aire en tu ubicación
+                    La aplicacion que te dice la calidad {'\n'} del aire en tu ubicación
         </Text>
           
-          </View>
+          
           <View style={styles.conteinerDividerS}>
             <Image style={{
               alignSelf: 'center',
