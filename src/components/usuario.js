@@ -5,8 +5,8 @@ import Rank from './rank.js'
 import ButtonNavigation from './buttonNavigation.js'
 import { HandleScreenStorage } from "./handleStateStorage"
 import { getAireData } from '../helper/webserviceAir.js'
-import Meteor, { createContainer } from 'react-native-meteor';
-import { Accounts } from 'react-native-meteor'
+import Meteor, { createContainer,Accounts } from 'react-native-meteor';
+
 
 const SERVER_URL = 'ws://52.161.111.232:80/websocket';
 class UsuarioScreen extends React.Component {
@@ -202,6 +202,13 @@ class UsuarioScreen extends React.Component {
               onChangeText={(text) => this.setState({ email: text })}
               value={this.state.text}
             />
+            <TextInput
+              placeholder="Contraseña"
+              secureTextEntry={true}
+              style={styles.emailInput}
+              onChangeText={(text) => this.setState({ password: text })}
+              value={this.state.password}
+            />
             {(this.state.email && this.state.email.length > 2) ? (<Button
               style={styles.btnInicio}
               onPress={this.goStart.bind(this)}
@@ -220,10 +227,20 @@ class UsuarioScreen extends React.Component {
 }
 
 export default createContainer(() => {
-  Meteor.subscribe('items');
-  
-  var ss = Meteor.collection('items').find().length;
+  var statusMeteor =  Meteor.status();
+  var handleItems = Meteor.subscribe('items');
+  const isReady = handleItems.ready();
+  if(isReady){
+    console.log(`Handle is ${isReady ? 'ready' : 'not ready'}`); 
+   Meteor.collection('items').find().length;
   return {
     count: Meteor.collection('items').find().length,
   };
+
+  }else{
+    return {
+      statusServer : statusMeteor.connected
+    }
+  }
+  
 }, UsuarioScreen);
