@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, StyleSheet, Image, TouchableOpacity, Button } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, Image, TouchableOpacity, Button, AsyncStorage } from 'react-native';
 
 export default class RankingScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
+         AsyncStorage.getItem('AIRE', (err, result) => {
+            var dataAire = JSON.parse(result)
+            if (dataAire != null) {
+
+                this.setState({ dataStore: dataAire });
+            }
+        });
     }
     static navigationOptions = {
-        drawerLabel: 'Resumen',
+        drawerLabel: 'Ranking lugares cercanos',
         drawerWidth: 50,
         drawerPosition: 'right',
 
@@ -125,7 +132,14 @@ export default class RankingScreen extends React.Component {
                 backgroundColor:'black',
                 color:'white',
                 fontWeight:'bold',
-            }
+            },
+            textTitle:{
+               
+                textAlign:'center',
+                fontSize:18,
+                backgroundColor: '#f7f7f7',
+
+            },
         });
         return (
             <ScrollView style={styles.main}>
@@ -134,65 +148,58 @@ export default class RankingScreen extends React.Component {
 
                     onPress={this.goResumen.bind(this)}
                     style={styles.btnlink}
-                    title=" < Ir a AirMine"
+                    title="Inicio"
                 />
 
                 <View style={styles.container}>
-                    <View style={styles.divider}>
-                        <Text style={styles.place}>
-                            Santa Fe
-                    </Text>
-                        <Text style={styles.date}>
-                            Sab 24 de Junio 2018
-                    </Text>
-                    </View>
-                    <View style={styles.dividerLeft}>
-                        <TouchableOpacity >
-                            <Image
-                                style={styles.updateBtn}
-                                source={require('../img/refresh.png')}
-                            />
-                            <Text style={styles.btnLabel}>
-                                Actualizar
-                    </Text>
-
-                        </TouchableOpacity>
-
-                    </View>
-
-                </View>
-                <View style={styles.container}>
                     <View style={styles.mainLeft}>
-                        <Text style={styles.dividerList}>Lista lugares cercanos mejos contaminados</Text>
+                        <Text style={styles.textTitle}>Lista lugares cercanos mejos contaminados</Text>
+                       
+                         <View style={styles.container}>
+                    
+                    <View style={styles.mainLeft}>
                         <View style={styles.container}>
                             <View style={styles.conteinerLeft}>
 
                                 <Text style={styles.labelSustancia}>
                                     aqi
                                     </Text>
-                                <Text style={styles.rankCirculo}>
-                                    124
-                                    </Text>
+                                <Text style={{
+                                    backgroundColor: ((this.state.dataStore) ? this.state.dataStore.estatus.color : 'red'),
+                                    borderRadius: 20,
+                                    height: 40,
+                                    width: 40,
+                                    fontSize: 13,
+                                    fontWeight: 'bold',
+                                    textAlign: 'center',
+                                    paddingTop: 10
+                                }}>
+                                    {(this.state.dataStore) ? this.state.dataStore.aqi : "?"}
+                                </Text>
                                 <Text style={styles.labelSustancia}>
-                                    Buena
-                                    </Text>
+                                    {(this.state.dataStore) ? this.state.dataStore.estatus.status : "?"}
+                                </Text>
                             </View>
                             <View style={styles.conteinerRight}>
 
                                 <Text >
-                                    Tepozotlan
+                                    Cuernavaca
                                 </Text>
 
                             </View>
                             <View style={styles.conteinerRight}>
 
                                 <Text >
-                                    time
+                                    Reporte 08:00
                                 </Text>
 
                             </View>
-
                         </View>
+                       
+                    </View>
+
+                    
+                </View>
                        
                     </View>
 
