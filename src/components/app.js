@@ -5,11 +5,13 @@ import {ActivityIndicator, ListView, Text, View} from 'react-native';
 export default class Inicio extends Component {
     constructor(props) {
         super(props);
+     
         this.state = {}
         this.state = {
             isLoading: true
         }
     }
+  
     componentWillReceiveProps(nextProps) {
         if (nextProps.s && nextProps.s.coords) {
             var stringCoord = "geo:" + nextProps.s.coords.latitude + ";" + nextProps.s.coords.longitude;

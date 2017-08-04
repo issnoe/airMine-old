@@ -1,35 +1,61 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, Button, AsyncStorage, TextInput } from 'react-native';
+import { View, Text, StyleSheet, Image, Button, AsyncStorage, TextInput, TouchableOpacity } from 'react-native';
 import PlaceTime from './placeTime.js'
 import Rank from './rank.js'
 import ButtonNavigation from './buttonNavigation.js'
-import {HandleScreenStorage} from "./handleStateStorage"
-import {getAireData} from '../helper/webserviceAir.js'
+import { HandleScreenStorage } from "./handleStateStorage"
+import { getAireData } from '../helper/webserviceAir.js'
+import Meteor, { createContainer } from 'react-native-meteor';
+import { Accounts } from 'react-native-meteor'
 
-export default class UsuarioScreen extends React.Component{
+const SERVER_URL = 'ws://52.161.111.232:80/websocket';
+class UsuarioScreen extends React.Component {
   constructor(props) {
     super(props);
+    
     this.state = {};
     this.state.user = {}
     this.props.navigation.navigate('DrawerClose');
     AsyncStorage.getItem('UID', (err, result) => {
-          var userStorage = JSON.parse(result)
-          if(userStorage!=null){
-         
-            this.updateStorageAir(()=>{});
-            //this.props.navigation.navigate('Home');
-            this.setState({user:userStorage});
-          }
+      var userStorage = JSON.parse(result)
+      if (userStorage != null) {
+
+        this.updateStorageAir(() => { });
+        //this.props.navigation.navigate('Home');
+        this.setState({ user: userStorage });
+      }
     });
   }
-   updateStorageAir(callback){
-    getAireData(function(estatus,resp){
-    AsyncStorage.setItem('AIRE', JSON.stringify(resp));
-    callback(resp)
+  componentWillMount() {
+    Meteor.connect(SERVER_URL);
+  }
+
+  handleAddItem(e) {
+    e.preventDefault();
+    debugger
+    this;
+    var options={
+      username:"luis",password:"123456"
+
+    }
+    Accounts.createUser(options, function(err, resul){
+      debugger;
+    })
+    
+    const name = Math.floor(Math.random() * 10); // just generate some random number
+    Meteor.call('Items.addOne', { name }, (err, res) => {
+      // Do whatever you want with the response
+      console.log('Items.addOne', err, res);
+    });
+  }
+  updateStorageAir(callback) {
+    getAireData(function (estatus, resp) {
+      AsyncStorage.setItem('AIRE', JSON.stringify(resp));
+      callback(resp)
     }.bind(this))
   }
 
-  
+
 
   static navigationOptions = {
     drawerLabel: 'Usuario',
@@ -47,10 +73,10 @@ export default class UsuarioScreen extends React.Component{
 
     this.props.navigation.navigate('Home');
   }
-  cleanUser(e){
+  cleanUser(e) {
     e.preventDefault();
     AsyncStorage.removeItem('UID')
-    this.setState({user:{}})
+    this.setState({ user: {} })
   }
 
 
@@ -99,27 +125,48 @@ export default class UsuarioScreen extends React.Component{
       ,
       btnInicio: {
 
+      },
+      welcome: {
+        textAlign: 'center',
+        fontSize: 12,
+        marginBottom: 7
+      },
+      instructions: {
+        textAlign: 'center',
+        fontSize: 14,
+        marginBottom: 7
       }
     });
     const { params } = this.props.navigation.state;
 
 
 
-    if(this.state.user && this.state.user.email){
-return (
-  <View style={styles.conteinerDividerM}>
-  <Text>
-  Este es el panel del Usuario
+    if (this.state.user && this.state.user.email) {
+      return (
+        <View style={styles.conteinerDividerM}>
+          <Text>
+            Este es el panel del Usuario
 {this.state.user.email}
-  </Text>
-  <Button
-              style={styles.btnInicio}
-              onPress={this.cleanUser.bind(this)}
-              title="Cerrar sesion"
-            />
+          </Text>
+          <Button
+            style={styles.btnInicio}
+            onPress={this.cleanUser.bind(this)}
+            title="Cerrar sesion"
+          />
 
-  </View>
-)
+          <Text style={styles.welcome}>
+            Welcome to React Native + Meteor!
+        </Text>
+          <Text style={styles.instructions}>
+            Item Count: {this.props.count}
+          </Text>
+
+          <TouchableOpacity style={styles.instructions} onPress={this.handleAddItem.bind(this)}>
+            <Text>Add Item</Text>
+          </TouchableOpacity>
+
+        </View>
+      )
 
     }
 
@@ -128,12 +175,15 @@ return (
         source={require('../img/nubesf.png')}
         style={styles.container}>
         <View style={styles.conteinerDividerM}>
-          <View style={styles.conteinerDividerS}>
-            <Text style={styles.instructions}>
-              La aplicacion que te dice la calidad {'\n'} del aire en tu ubicación
+
+          <Text style={styles.welcome}>
+            Bienvenido a AirMine
         </Text>
-          
-          </View>
+          <Text style={styles.instructions}>
+            La aplicacion que te dice la calidad {'\n'} del aire en tu ubicación
+        </Text>
+
+
           <View style={styles.conteinerDividerS}>
             <Image style={{
               alignSelf: 'center',
@@ -149,15 +199,15 @@ return (
             <TextInput
               placeholder="Email"
               style={styles.emailInput}
-              onChangeText={(text) => this.setState({ email:text })}
+              onChangeText={(text) => this.setState({ email: text })}
               value={this.state.text}
             />
-            {(this.state.email && this.state.email.length>2)?( <Button
+            {(this.state.email && this.state.email.length > 2) ? (<Button
               style={styles.btnInicio}
               onPress={this.goStart.bind(this)}
               title="Iniciar"
-            />):undefined}
-           
+            />) : undefined}
+
           </View>
 
         </View>
@@ -168,3 +218,12 @@ return (
     );
   }
 }
+
+export default createContainer(() => {
+  Meteor.subscribe('items');
+  
+  var ss = Meteor.collection('items').find().length;
+  return {
+    count: Meteor.collection('items').find().length,
+  };
+}, UsuarioScreen);
