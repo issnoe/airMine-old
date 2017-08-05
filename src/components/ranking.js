@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, Button } from 'react-native';
-import { stylesHome } from '../styles/home.js'
+
 export default class RankingScreen extends React.Component {
   constructor(props) {
     super(props);
