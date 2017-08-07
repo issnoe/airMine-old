@@ -13,8 +13,9 @@ import {
     TouchableOpacity
 } from 'react-native';
 import {ButtonCustom, ContainerMain} from './share-ui/form.js'
+
+import {NavToogle} from "./components/navigatorToogle.js"
 var styles = StyleSheet.create(mainStyles);
-import {StackNavigator, DrawerNavigator, DrawerItems} from 'react-navigation';
 class App extends Component {
     constructor(props) {
         super(props);
@@ -22,7 +23,6 @@ class App extends Component {
         this.state = {
             email: "",
             password: "",
-
             errorLogin: "",
             loadingLoading: false,
             errorCreate: "",
@@ -85,9 +85,9 @@ class App extends Component {
             }
 
             if (email.length === 0) {
-                this.setState({errorLogin: 'You must enter an email address'});
+                this.setState({errorLogin: 'Debes escribir el correo'});
             } else if (password.length === 0) {
-                this.setState({errorLogin: 'You must enter a password'});
+                this.setState({errorLogin: 'Debes escribir la contraseña'});
             }
 
         } else {
@@ -96,26 +96,16 @@ class App extends Component {
 
         return valid;
     }
+    onSignOut(){
+        
+    }
 
     render() {
         const {loginStatus} = this.state;
 
         if (loginStatus) {
 
-            return (
-                <ContainerMain>
-                    <View style={styles.conteiner}>
-                        <ButtonCustom
-                            class="btnDefault"
-                            error={this.state.errorCreate}
-                            loading={this.state.errorCreate}
-                            title="Crear"
-                            onClick={() => {
-                            alert()
-                        }}/>
-                    </View>
-                </ContainerMain>
-            )
+            return (<NavToogle onSignOut={this.onSignOut}/>)
 
         }
 

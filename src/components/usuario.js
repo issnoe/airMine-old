@@ -140,7 +140,7 @@ class UsuarioScreen extends React.Component {
       }
     });
     const {params} = this.props.navigation.state;
-    if (this.state.user && this.state.user.email) {
+    
       return (
         <View >
           <Text>
@@ -166,48 +166,9 @@ class UsuarioScreen extends React.Component {
         </View>
       )
 
-    }
+    
 
-    return (
-      <Image source={require('../img/nubesf.png')} style={styles.container}>
-        <View>
-          <Text style={styles.appTitle}>
-            BIENVENIDO A AIRMINE
-          </Text>
-          <View >
-            <Image
-              style={{
-              alignSelf: 'center',
-              height: 90,
-              width: 90,
-              marginTop: 0,
-              borderWidth: 1,
-              borderRadius: 75
-            }}
-              source={require('../img/ecology.png')}/>
-          </View>
-
-          <View style={styles.conteinerDivider}>
-            <TextInput
-              placeholder="Email"
-              style={styles.textInput}
-              onChangeText={this.handleEmail}
-              value={this.state.email}/>
-            <TextInput
-              placeholder="Contraseña"
-              secureTextEntry={true}
-              style={styles.textInput}
-              onChangeText={this.handlePassword}
-              value={this.state.password}/>
-            <Button onPress={this.managerAccount} title="Iniciar"/>
-
-          </View>
-
-        </View>
-
-      </Image>
-
-    );
+   
   }
 }
 

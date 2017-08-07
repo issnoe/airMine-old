@@ -10,11 +10,12 @@ export default class UvScreen extends React.Component {
     this.props.navigation.navigate('DrawerClose'); 
   }
   static navigationOptions = {
-    drawerLabel: 'Radiacìon UV',
+    drawerLabel: 'Radiacìon UV2',
     drawerWidth: 50,
     drawerPosition: 'right',
-
+    tabBarVisible: true
   };
+  
   render() {
     const styles = StyleSheet.create({
       container: {
