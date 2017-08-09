@@ -1,5 +1,6 @@
 import Meteor, {createContainer, Accounts} from 'react-native-meteor';
-const SERVER_URL = 'ws://52.161.111.232:80/websocket';
+//const SERVER_URL = 'ws://52.161.111.232:80/websocket';
+const SERVER_URL = 'ws://192.168.100.6:3000/websocket';
 import {mainStyles} from "./styles/main.js"
 import React, {Component} from 'react';
 import {
@@ -151,16 +152,16 @@ class App extends Component {
 
 export default createContainer(() => {
     var statusMeteor = Meteor.status();
-    var handleItems = Meteor.subscribe('items');
+    var handleItems = Meteor.subscribe('person');
     const isReady = handleItems.ready();
     if (isReady) {
         Meteor
-            .collection('items')
+            .collection('person')
             .find()
             .length;
         return {
             count: Meteor
-                .collection('items')
+                .collection('person')
                 .find()
                 .length,
             statusServer: statusMeteor.connected

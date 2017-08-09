@@ -49,6 +49,10 @@ export const mainStyles = {
         textAlign: 'center',
         fontWeight: 'bold'
     },
+    textInputSettings: {
+        backgroundColor: 'white',
+        borderRadius: 5
+    },
     textInput: {
         height: 40,
         backgroundColor: 'white',
@@ -72,6 +76,12 @@ export const mainStyles = {
         paddingBottom: 20,
         color: 'white',
         paddingTop: 60
+    },
+    textHeader: {
+        fontWeight: 'bold',
+        textAlign: 'center',
+        fontSize: 20,
+        marginBottom: 7
     },
     textNormal: {
         textAlign: 'center',

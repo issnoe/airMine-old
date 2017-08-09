@@ -5,7 +5,7 @@ const Items = new Mongo.Collection('items');
 
 Meteor.methods({
   'Items.addOne': ({ name }) => {
-    return Items.insert({ name });
+    return Items.insert( name );
   },
 });
 
